@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{%load static %}
+
+
+{%block content%}
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CONTACTS WEB APP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact:contact_list' %}">Contacts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'message:message_list' %}">Messages</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container bg-light" style="margin-top:10vh; border-radius:3%; padding-bottom:1vh">
+    <h3 class="white-important p-2">
+    Messages List</h3>
+    
+    {% if data %}
+    <ul style="list-style-type: none">
+    {% for message in data %}
+    <li style="margin-bottom:1vh">{{message.contact.firstname}} {{message.created_at}} {{message.otp}}<li><a>
+    {% endfor %}
+    </ul>
+    {% else %}
+    Empty Message List!
+    {% endif %}
+    </div> 
+  {%endblock%}
